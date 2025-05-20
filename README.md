@@ -255,7 +255,7 @@ Sedangkan _cosine similarity_ adalah salah satu teknik mengukur kesamaan yang be
 
 Cara kerja dari fungsi *cosine similiraty* yaitu dengan melakukan perhitungan yang sering digunakan untuk menghitung kemiripan diantara item-item [[7]](https://jurnal.uns.ac.id/itsmart/article/download/35008/27748). Secara umum, fungsi similarity adalah fungsi yang menerima dua buah obyek berupa bilangan riil (0 dan 1) dan mengembalikan nilai kemiripan (similarity) antara kedua obyek tersebut berupa bilangan riil. Cosine similarity merupakan salah satu metode pengukuran kemiripan yang populer. Metode ini digunakan untuk menghitung nilai kosinus sudut antara dua vektor dan biasanya digunakan untuk mengukur kemiripan antara dua teks/dokumen. Fungsi cosine similarity antara item A dan item B ditunjukkan sebagai berikut [[8]](https://jurnal.uns.ac.id/itsmart/article/download/35008/27748).
 
-![img](https://i.ibb.co/tJXFZXB/image.png)
+![Screenshot 2025-05-20 161116](https://github.com/user-attachments/assets/efa32249-1d46-4a16-ae05-acf1f263512a)
 
 
 Keterangan:
