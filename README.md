@@ -51,19 +51,93 @@ Lisensi | Unknown
 Kategori | Movies, TV Shows, Recomendations movie Dataset
 Jenis dan Ukuran Berkas | Zip (866 kB)
 
-Pada berkas yang diunduh yakni movies.csv berisi 9743 rows × 3 columns dan ratings.csv berisi 100k++ baris dan 4 columns. Kolom-kolom tersebut terdiri dari 2 buah kolom bertipe objek dan 1 buah kolom bertipe numerik (tipe data int64) pada file movies.csv dan pada files ratings.csv terdiri dari 4 buah kolom bertipe numerik (int64 dan float64). Untuk penjelasan mengenai variabel-variable pada dataset movies recomendation ini dapat dilihat sebagai berikut:
+Pada berkas yang diunduh yakni movies.csv berisi 9742 rows × 3 columns. Kolom-kolom tersebut terdiri dari 2 buah kolom bertipe objek dan 1 buah kolom bertipe numerik (tipe data int64) pada file movies.csv dan pada files ratings.csv terdiri dari 4 buah kolom bertipe numerik (int64 dan float64). Untuk penjelasan mengenai variabel-variable pada dataset movies recomendation ini dapat dilihat sebagai berikut:
 - **movieId** merupakan parameter bernilai unique. Parameter ini digunakan untuk mengindetifikasi daftar tiap-tiap film.
-- **userId** merupakan parameter bernilai unique. Parameter ini digunakan untuk mengindetifikasi daftar tiap-tiap pengguna.
-- **rating** merupakan parameter berisi nilai rating film yg diberikan pengguna
 - **genre** merupakan parameter yg menyimpan tiap-tiap kategori film
 - **title** merupakan parameter yg menyimpan judul masing-masing film
 
 Berikut beberapa tahapan Data Understanding diantaranya sebagai berikut:
-- Meload Dataset ke dalam sebuah Dataframe menggunakan pandas
-- ``` df.info()``` digunakan untuk mengecek tipe kolom pada dataset
-- ```df.isna().sum()``` digunakan untuk mengecek apakah ada kolom yg kosong, pada dataset ini nilai kosong tidak ditemukan
-- ```df.describe()``` digunakan untuk mendapatkan info mengenai dataset terhadap nilai rata-rata, median, banyaknya data, nilai Q1 hingga Q3 dan lain-lain.
-- ``` len(nama_variable.unique()) ```menghitung panjang data unique dari variable tertentu
+
+### Meload Dataset ke dalam sebuah Dataframe menggunakan pandas, data yang ditampilkan sebagai berikut:
+
+|      | movieId |                                     title |                                          genres |   |
+|-----:|--------:|------------------------------------------:|------------------------------------------------:|---|
+|   0  |       1 |                          Toy Story (1995) | Adventure\|Animation\|Children\|Comedy\|Fantasy |   |
+|   1  |       2 |                            Jumanji (1995) |                    Adventure\|Children\|Fantasy |   |
+|   2  |       3 |                   Grumpier Old Men (1995) |                                 Comedy\|Romance |   |
+|   3  |       4 |                  Waiting to Exhale (1995) |                          Comedy\|Drama\|Romance |   |
+|   4  |       5 |        Father of the Bride Part II (1995) |                                          Comedy |   |
+|  ... |     ... |                                       ... |                                             ... |   |
+| 9737 |  193581 | Black Butler: Book of the Atlantic (2017) |              Action\|Animation\|Comedy\|Fantasy |   |
+| 9738 |  193583 |              No Game No Life: Zero (2017) |                      Animation\|Comedy\|Fantasy |   |
+| 9739 |  193585 |                              Flint (2017) |                                           Drama |   |
+| 9740 |  193587 |       Bungo Stray Dogs: Dead Apple (2018) |                               Action\|Animation |   |
+| 9741 |  193609 |       Andrew Dice Clay: Dice Rules (1991) |                                          Comedy |   |
+
+Terdapat 9741 baris dengan 3 kolom dari data yang akan ditampilkan
+
+### Menampilkan informasi dataset
+
+| # |  Column | Non-Null Count |  Dtype |   |
+|--:|--------:|---------------:|-------:|---|
+| 0 | movieId |  9742 non-null |  int64 |   |
+| 1 |   title |  9742 non-null | object |   |
+| 2 |  genres |  9742 non-null | object |   |
+
+### Menampilkan Daftar Genre pada dataset
+
+![Screenshot 2025-05-20 151441](https://github.com/user-attachments/assets/318cf42e-0ff7-4511-9a82-fa2b2b4fd978)
+
+### Menghitung besar/panjang data genre secara unique
+
+Jumlah data genre:  951
+
+Menghitung jumlah data genre data pada file movie.csv secara uniqe. Hasil menunjukkan bahwa terdapat 951 data yang uniqe
+
+### Memuat deskripsi setiap kolom dataframe untuk perhitungan count, rata-rata, minimal value dan maximal value
+
+|       |       movieId |   |   |   |
+|------:|--------------:|--:|--:|---|
+| count |   9742.000000 |   |   |   |
+|  mean |  42200.353623 |   |   |   |
+|  std  |  52160.494854 |   |   |   |
+|  min  |      1.000000 |   |   |   |
+|  25%  |   3248.250000 |   |   |   |
+|  50%  |   7300.000000 |   |   |   |
+|  75%  |  76232.000000 |   |   |   |
+|  max  | 193609.000000 |   |   |   |
+
+|         | 0 |   |   |   |
+|--------:|--:|--:|--:|---|
+| movieId | 0 |   |   |   |
+|  title  | 0 |   |   |   |
+|  genres | 0 |   |   |   |
+
+Berdasarkan data tersebut jumlah data ialah 9742 dengan mean 42200 dan nilai min 1 dan max 193609. Selain itu Standar Deviasi pada data senilai 52160. Selanjutnya mengecek data yang kosong, data menunjukkan tidak ada data yang kosong
+
+### Memuat dataset ke dalam variable baru
+
+|      | movieId |                                     title |                                          genres |   |
+|-----:|--------:|------------------------------------------:|------------------------------------------------:|---|
+|   0  |       1 |                          Toy Story (1995) | Adventure\|Animation\|Children\|Comedy\|Fantasy |   |
+|   1  |       2 |                            Jumanji (1995) |                    Adventure\|Children\|Fantasy |   |
+|   2  |       3 |                   Grumpier Old Men (1995) |                                 Comedy\|Romance |   |
+|   3  |       4 |                  Waiting to Exhale (1995) |                          Comedy\|Drama\|Romance |   |
+|   4  |       5 |        Father of the Bride Part II (1995) |                                          Comedy |   |
+|  ... |     ... |                                       ... |                                             ... |   |
+| 9737 |  193581 | Black Butler: Book of the Atlantic (2017) |              Action\|Animation\|Comedy\|Fantasy |   |
+| 9738 |  193583 |              No Game No Life: Zero (2017) |                      Animation\|Comedy\|Fantasy |   |
+| 9739 |  193585 |                              Flint (2017) |                                           Drama |   |
+| 9740 |  193587 |       Bungo Stray Dogs: Dead Apple (2018) |                               Action\|Animation |   |
+| 9741 |  193609 |       Andrew Dice Clay: Dice Rules (1991) |                                          Comedy |   |
+
+Data menunjukkan terdapat 9742 baris dengan 3 kolom
+
+### Menampilkan kata paling banyak
+
+![image](https://github.com/user-attachments/assets/d0c5973f-faab-4d54-8d10-9a7d836a284d)
+
+Menampilkan kata dengan frekuensi terbanyak pada kolom genre. Data menunjukkan kata "Drama" dan "Comedy" memiliki jumlah kata paling banyak
 
 ## Data Preparation
 
@@ -72,14 +146,104 @@ Berikut adalah tahapan-tahapan dalam melakukan Persiapan data:
 2. Men-drop judul yg duplikat (membersihkan data)
 3. Mereset ulang penomoran index data (tranformasi data)
 
-Teknik yang digunakan pada tahapan Proses Data adalah vektorisasi fungsi CountVectorizer dari library scikit-learn. CountVectorizer digunakan untuk mengubah teks yang diberikan menjadi vektor berdasarkan frekuensi (jumlah) setiap kata yang muncul di seluruh teks. 
-CountVectorizer membuat matriks di mana setiap kata unik diwakili oleh kolom matriks, dan setiap sampel teks dari dokumen adalah baris dalam matriks. Nilai setiap sel tidak lain adalah jumlah kata dalam sampel teks tertentu.
+Teknik yang digunakan pada tahapan Proses Data adalah vektorisasi fungsi CountVectorizer dari library scikit-learn. CountVectorizer digunakan untuk mengubah teks yang diberikan menjadi vektor berdasarkan frekuensi (jumlah) setiap kata yang muncul di seluruh teks. CountVectorizer membuat matriks di mana setiap kata unik diwakili oleh kolom matriks, dan setiap sampel teks dari dokumen adalah baris dalam matriks. Nilai setiap sel tidak lain adalah jumlah kata dalam sampel teks tertentu.
 
-Pada proses vektorisasi ini, digunakan metode sebagai berikut. 
-1. ```fit``` metode berfungsi untuk melakukan perhitungan idf pada data
-2. ```get_feature_names_out()``` berfungsi untuk melakukan mapping array dari fitur index integer ke fitur nama
-3. ```fit_transform()``` berfungsi untuk mempelajari kosa kata dan Inverse Document Frequency (IDF) dengan memberikan nilai return berupa *document-term matrix*
-4. ```todense()``` berfungsi untuk mengubah vektor tf-idf dalam bentuk matriks
+### Memilih kolom berdasarkan data yang dibutuhkan untuk melakukan content based learning berdasarkan genre yaitu judul dan genre
+
+9742
+9742
+
+Memilih kolom berdasarkan data, terlihat masing-masing menampilkan 9742 data. Dengan demikian tidak ada missing value.
+
+### Membuat data menjadi dalam bentuk dataframe sehingga mudah untuk dipersiapka
+
+|      |                                     judul |                                           genre |   |   |
+|-----:|------------------------------------------:|------------------------------------------------:|--:|---|
+|   0  |                          Toy Story (1995) | Adventure\|Animation\|Children\|Comedy\|Fantasy |   |   |
+|   1  |                            Jumanji (1995) |                    Adventure\|Children\|Fantasy |   |   |
+|   2  |                   Grumpier Old Men (1995) |                                 Comedy\|Romance |   |   |
+|   3  |                  Waiting to Exhale (1995) |                          Comedy\|Drama\|Romance |   |   |
+|   4  |        Father of the Bride Part II (1995) |                                          Comedy |   |   |
+|  ... |                                       ... |                                             ... |   |   |
+| 9737 | Black Butler: Book of the Atlantic (2017) |              Action\|Animation\|Comedy\|Fantasy |   |   |
+| 9738 |              No Game No Life: Zero (2017) |                      Animation\|Comedy\|Fantasy |   |   |
+| 9739 |                              Flint (2017) |                                           Drama |   |   |
+| 9740 |       Bungo Stray Dogs: Dead Apple (2018) |                               Action\|Animation |   |   |
+| 9741 |       Andrew Dice Clay: Dice Rules (1991) |                                          Comedy |   |   |
+
+![Screenshot 2025-05-20 153426](https://github.com/user-attachments/assets/6c4813ed-f642-43e2-9cd8-e362fce21707)
+
+Melihat informasi kolom pada data, terlihat data type yaitu object tanpa mission value.
+
+### Memuat banyak data dari setiap unique value berdasarkan genre
+
+|     |                                         genre | count |   |   |
+|----:|----------------------------------------------:|------:|--:|---|
+|  0  |                                         Drama |  1053 |   |   |
+|  1  |                                        Comedy |   946 |   |   |
+|  2  |                                 Comedy\|Drama |   435 |   |   |
+|  3  |                               Comedy\|Romance |   363 |   |   |
+|  4  |                                Drama\|Romance |   349 |   |   |
+| ... |                                           ... |   ... |   |   |
+| 946 |                      Children\|Drama\|Musical |     1 |   |   |
+| 947 |   Adventure\|Drama\|Horror\|Mystery\|Thriller |     1 |   |   |
+| 948 | Adventure\|Children\|Comedy\|Fantasy\|Mystery |     1 |   |   |
+| 949 |       Adventure\|Animation\|Children\|Western |     1 |   |   |
+| 950 |            Comedy\|Mystery\|Romance\|Thriller |     1 |   |   |
+
+Data menunjukkan 951 data uniqe dengan dua kolom
+
+#### Melihat kembali Jenis-Jenis Genre yang terdapat pada data
+
+![Screenshot 2025-05-20 154041](https://github.com/user-attachments/assets/9cfbaf8c-e240-44f7-8e9c-5ad73ab21ea6)
+
+#### Melakukan drop pada judul film yg double, dan berhasil menghapus beberapa judul
+
+Setelah dilakukan judul yang duplikat, maka data menghasilkan 9737 data
+
+### Melakukan indeks ulang pada data agar penomoran dilakukan berurutan
+
+![Screenshot 2025-05-20 154259](https://github.com/user-attachments/assets/f6212467-89c1-4505-bd26-27fc249d7122)
+
+### Memasukkan nilai data masing-masing kolom ke dalam variabel baru
+
+![Screenshot 2025-05-20 154432](https://github.com/user-attachments/assets/e7875848-8d5e-4e31-a475-13cfc92136d6)
+
+Mengecek ulang data yg dimasukkan ke dalam variable baru
+
+### Proses Data
+
+#### Membangun sistem rekomendasi berdasarkan genre yang ada pada setiap movies.
+
+"array(['action', 'adventure', 'animation', 'children', 'comedy', 'crime',
+       'documentary', 'drama', 'fantasy', 'fi', 'film', 'genres',
+       'horror', 'imax', 'listed', 'musical', 'mystery', 'no', 'noir',
+       'romance', 'sci', 'thriller', 'war', 'western'], dtype=object) "
+
+#### Melakukan Proses fit dan melihat jumlah ukuran matrix
+
+Menghasilkan data sebagai berikut: (9737, 24)
+
+#### Mengubah vektor ke dalam bentuk matrix
+
+![Screenshot 2025-05-20 154820](https://github.com/user-attachments/assets/9ae58ff6-6e08-46b1-8097-29bcf70d2d00)
+
+#### Melihat Daftar jumlah film berdasarkan genre dan melihat korelasi nya yg diperlihatkan dalam bentuk matrix
+
+|                                judul | noir | mystery | romance | adventure | listed | sci | fantasy | action | no | genres | ... | horror | thriller | crime | children | western | drama | musical | fi | film | comedy |   |
+|-------------------------------------:|-----:|--------:|--------:|----------:|-------:|----:|--------:|-------:|---:|-------:|----:|-------:|---------:|------:|---------:|--------:|------:|--------:|---:|-----:|-------:|---|
+|          After Hours (1985)          |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        1 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
+|   Kentucky Fried Movie, The (1977)   |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
+|          Summer Catch (2001)         |    0 |       0 |       1 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     1 |       0 |  0 |    0 |      1 |   |
+|           Possession (2002)          |    0 |       0 |       1 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     1 |       0 |  0 |    0 |      0 |   |
+| Down and Out in Beverly Hills (1986) |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
+|        Valhalla Rising (2009)        |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      1 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     1 |       0 |  0 |    0 |      0 |   |
+|          Mystery Date (1991)         |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
+|              Fans (1999)             |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
+|          Bob Roberts (1992)          |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
+|        Beautiful Thing (1996)        |    0 |       0 |       1 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     1 |       0 |  0 |    0 |      0 |   |
+
+Data menunjukkan terdapat 10 baris dengan 22 kolom
 
 ## Modeling
 
@@ -112,9 +276,28 @@ Tahapan yang dilakukan pada fungsi tersebut ialah sebagai berikut.
 6. Mengembalikan 19 rekomendasi judul film dari kemiripan skor yang telah diurutkan dan menampilkan genre dari 19 rekomendasi film tersebut
 
 Berikut _top_-20 _recommemdation_ berdasarkan genre dari judul film "*Lost and Delirious (2001)*"
-judul | genre
----|---
-Lost and Delirious (2001) | Drama
+
+|    |                                          judul | genre |
+|---:|-----------------------------------------------:|------:|
+|  0 |                                 Othello (1995) | Drama |
+|  1 |                         Dangerous Minds (1995) | Drama |
+|  2 |                Cry, the Beloved Country (1995) | Drama |
+|  3 |                             Restoration (1995) | Drama |
+|  4 |                                 Georgia (1995) | Drama |
+|  5 |                   Home for the Holidays (1995) | Drama |
+|  6 |                      Mr. Holland's Opus (1995) | Drama |
+|  7 |                Boys of St. Vincent, The (1992) | Drama |
+|  8 |                 Basketball Diaries, The (1995) | Drama |
+|  9 |               Awfully Big Adventure, An (1995) | Drama |
+| 10 |       Beauty of the Day (Belle de jour) (1967) | Drama |
+| 11 |                                    Kids (1995) | Drama |
+| 12 |                                   Nadja (1994) | Drama |
+| 13 |                               Showgirls (1995) | Drama |
+| 14 |                      White Man's Burden (1995) | Drama |
+| 15 |                   Browning Version, The (1994) | Drama |
+| 16 | Burnt by the Sun (Utomlyonnye solntsem) (1994) | Drama |
+| 17 |                               Cure, The (1995) | Drama |
+| 18 |                                 Exotica (1994) | Drama |
 
 Dengan hasil yang diberikan di atas berdasarkan judul film "Lost and Delirious (2001)" dengan genre Drama maka didapatkan 19 rekomendasi judul film dengan genre yang serupa ataupun mirip.
 
