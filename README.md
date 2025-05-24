@@ -76,6 +76,10 @@ Berikut beberapa tahapan Data Understanding diantaranya sebagai berikut:
 
 Terdapat 9741 baris dengan 3 kolom dari data yang akan ditampilkan
 
+### Menampilkan keterangan jumlah/panjang data unique daftar film dan data pengguna/user
+
+Banyak Data movies ID:  9742
+
 ### Menampilkan informasi dataset & cek kondisi data
 
 ![Screenshot 2025-05-24 143309](https://github.com/user-attachments/assets/12c344e2-37dd-4883-8eb6-886e2a56b6ad)
