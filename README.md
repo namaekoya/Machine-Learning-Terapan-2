@@ -33,7 +33,7 @@ Proyek yang dirancang dalam konteks ini bertujuan untuk mengembangkan sistem rek
         Mengecek masalah data yang kosong dengan melakukan pengecekan terlebih dahulu.
         Menghitung besar/panjang data pada dataset terlebih dahulu kemudian mencoba untuk menguraikan jenis-jenis fitur pada kolom genre
         Mengurutkan data movieId dan menghapus data yg sama
-        Membuang judul film yg duplikat dengan method ``` drop_duplicats()``` 
+        Membuang judul film yg duplikat dengan method 
     - Metode yang digunakan pada projek ini adalah Content Based Filtering. Content Based Filtering adalah rekomendasi berbasis konten yang merekomendasikan item yang memiliki kemiripan dengan item yang disukai/diinput pengguna sebelumnya. Content-based filtering mempelajari profil minat pengguna baru berdasarkan data dari objek yang telah dinilai pengguna [[6](http://103.23.20.161/index.php/semnasif/article/view/1148)]. Metode ini bekerja dengan menyarankan item serupa yang pernah disukai sebelumnya atau sedang dilihat sekarang kepada pengguna berdasrakan kategori tertentu dari item yang dinilai oleh pengguna. Kelebihan dan Kekurangan dari Content-based Filtering adalah sebagai berikut:
         * Kelebihan
             * User Independence: Tidak bergantung kepada user lain dalam memberikan rekomendasi yang ada. New Item Mampu merekomendasikan item yang belum dinilai oleh setiap pengguna.
@@ -76,13 +76,11 @@ Berikut beberapa tahapan Data Understanding diantaranya sebagai berikut:
 
 Terdapat 9741 baris dengan 3 kolom dari data yang akan ditampilkan
 
-### Menampilkan informasi dataset
+### Menampilkan informasi dataset & cek kondisi data
 
-| # |  Column | Non-Null Count |  Dtype |   |
-|--:|--------:|---------------:|-------:|---|
-| 0 | movieId |  9742 non-null |  int64 |   |
-| 1 |   title |  9742 non-null | object |   |
-| 2 |  genres |  9742 non-null | object |   |
+![Screenshot 2025-05-24 143309](https://github.com/user-attachments/assets/12c344e2-37dd-4883-8eb6-886e2a56b6ad)
+
+Memuat informasi dataframe movies_meta_data dan melihat missing value dan duplicate, seperti yang ditampilkan tidak ada missing value maupun duplicate pada semua data.
 
 ### Menampilkan Daftar Genre pada dataset
 
@@ -142,11 +140,6 @@ Menampilkan kata dengan frekuensi terbanyak pada kolom genre. Data menunjukkan k
 ## Data Preparation
 
 Berikut adalah tahapan-tahapan dalam melakukan Persiapan data:
-1. Menghitung jumlah data pada genre
-2. Men-drop judul yg duplikat (membersihkan data)
-3. Mereset ulang penomoran index data (tranformasi data)
-
-Teknik yang digunakan pada tahapan Proses Data adalah vektorisasi fungsi CountVectorizer dari library scikit-learn. CountVectorizer digunakan untuk mengubah teks yang diberikan menjadi vektor berdasarkan frekuensi (jumlah) setiap kata yang muncul di seluruh teks. CountVectorizer membuat matriks di mana setiap kata unik diwakili oleh kolom matriks, dan setiap sampel teks dari dokumen adalah baris dalam matriks. Nilai setiap sel tidak lain adalah jumlah kata dalam sampel teks tertentu.
 
 ### Memilih kolom berdasarkan data yang dibutuhkan untuk melakukan content based learning berdasarkan genre yaitu judul dan genre
 
@@ -205,7 +198,7 @@ Setelah dilakukan judul yang duplikat, maka data menghasilkan 9737 data
 
 ![Screenshot 2025-05-20 154259](https://github.com/user-attachments/assets/f6212467-89c1-4505-bd26-27fc249d7122)
 
-### Memasukkan nilai data masing-masing kolom ke dalam variabel baru
+### Memasukkan nilai data masing-masing kolom ke dalam variabel baru berdasarkan genre
 
 ![Screenshot 2025-05-20 154432](https://github.com/user-attachments/assets/e7875848-8d5e-4e31-a475-13cfc92136d6)
 
