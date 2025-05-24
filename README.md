@@ -148,7 +148,6 @@ Berikut adalah tahapan-tahapan dalam melakukan Persiapan data:
 ### Memilih kolom berdasarkan data yang dibutuhkan untuk melakukan content based learning berdasarkan genre yaitu judul dan genre
 
 9742
-9742
 
 Memilih kolom berdasarkan data, terlihat masing-masing menampilkan 9742 data. Dengan demikian tidak ada missing value.
 
