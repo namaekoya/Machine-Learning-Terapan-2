@@ -51,7 +51,7 @@ Lisensi | Unknown
 Kategori | Movies, TV Shows, Recomendations movie Dataset
 Jenis dan Ukuran Berkas | Zip (866 kB)
 
-Pada berkas yang diunduh yakni movies.csv berisi 9742 rows × 3 columns. Kolom-kolom tersebut terdiri dari 2 buah kolom bertipe objek dan 1 buah kolom bertipe numerik (tipe data int64) pada file movies.csv dan pada files ratings.csv terdiri dari 4 buah kolom bertipe numerik (int64 dan float64). Untuk penjelasan mengenai variabel-variable pada dataset movies recomendation ini dapat dilihat sebagai berikut:
+Pada berkas yang diunduh yakni movies.csv berisi 9742 rows × 3 columns. Untuk penjelasan mengenai variabel-variable pada dataset movies recomendation ini dapat dilihat sebagai berikut:
 - **movieId** merupakan parameter bernilai unique. Parameter ini digunakan untuk mengindetifikasi daftar tiap-tiap film.
 - **genre** merupakan parameter yg menyimpan tiap-tiap kategori film
 - **title** merupakan parameter yg menyimpan judul masing-masing film
@@ -151,7 +151,7 @@ Berikut adalah tahapan-tahapan dalam melakukan Persiapan data:
 
 Memilih kolom berdasarkan data, terlihat masing-masing menampilkan 9742 data. Dengan demikian tidak ada missing value.
 
-### Membuat data menjadi dalam bentuk dataframe sehingga mudah untuk dipersiapka
+### Membuat data menjadi dalam bentuk dataframe sehingga mudah untuk dipersiapkan
 
 |      |                                     judul |                                           genre |   |   |
 |-----:|------------------------------------------:|------------------------------------------------:|--:|---|
@@ -169,7 +169,7 @@ Memilih kolom berdasarkan data, terlihat masing-masing menampilkan 9742 data. De
 
 ![Screenshot 2025-05-20 153426](https://github.com/user-attachments/assets/6c4813ed-f642-43e2-9cd8-e362fce21707)
 
-Melihat informasi kolom pada data, terlihat data type yaitu object tanpa mission value.
+Melihat informasi kolom pada data, terlihat data type yaitu object tanpa missing value. Dengan demikian, data tersebut tidak perlu dilakukan penangangan lebih lanjut.
 
 ### Memuat banyak data dari setiap unique value berdasarkan genre
 
@@ -187,15 +187,19 @@ Melihat informasi kolom pada data, terlihat data type yaitu object tanpa mission
 | 949 |       Adventure\|Animation\|Children\|Western |     1 |   |   |
 | 950 |            Comedy\|Mystery\|Romance\|Thriller |     1 |   |   |
 
-Data menunjukkan 951 data uniqe dengan dua kolom
+Data menunjukkan 951 data uniqe dengan dua kolom. Drama memiliki jumlah tertinggi dengan 1053 dan disusul Comedy dengan 946 data.
 
-#### Melihat kembali Jenis-Jenis Genre yang terdapat pada data
+### Menambahkan tanda strip
+
+Membuat tanda '-' pada variabel data dihapus
+
+#### Melihat Jenis-Jenis Genre yang terdapat pada data
 
 ![Screenshot 2025-05-20 154041](https://github.com/user-attachments/assets/9cfbaf8c-e240-44f7-8e9c-5ad73ab21ea6)
 
 #### Melakukan drop pada judul film yg double, dan berhasil menghapus beberapa judul
 
-Setelah dilakukan judul yang duplikat, maka data menghasilkan 9737 data
+Melakukan penghapusan pada data yang mengalami duplikat, seterlah dilakukan penghapusan data duplikat maka data yang tersisa menjadi 9737 baris.
 
 ### Melakukan indeks ulang pada data agar penomoran dilakukan berurutan
 
@@ -205,7 +209,7 @@ Setelah dilakukan judul yang duplikat, maka data menghasilkan 9737 data
 
 ![Screenshot 2025-05-20 154432](https://github.com/user-attachments/assets/e7875848-8d5e-4e31-a475-13cfc92136d6)
 
-Mengecek ulang data yg dimasukkan ke dalam variable baru
+Mengecek ulang data yg dimasukkan ke dalam variable baru dengan perintah '''to list''' ke kolom judul dan dilanjutkan pada kolom genre.
 
 ### Proses Data
 
@@ -216,30 +220,35 @@ Mengecek ulang data yg dimasukkan ke dalam variable baru
        'horror', 'imax', 'listed', 'musical', 'mystery', 'no', 'noir',
        'romance', 'sci', 'thriller', 'war', 'western'], dtype=object) "
 
+Melakukan sistem rekomendasi pada genre pada setiap movies yang ada seperti yang ditampilkan di atas.
+
 #### Melakukan Proses fit dan melihat jumlah ukuran matrix
 
 Menghasilkan data sebagai berikut: (9737, 24)
 
 #### Mengubah vektor ke dalam bentuk matrix
 
-![Screenshot 2025-05-20 154820](https://github.com/user-attachments/assets/9ae58ff6-6e08-46b1-8097-29bcf70d2d00)
+![Screenshot 2025-05-26 211407](https://github.com/user-attachments/assets/7e3cc843-9ebb-485f-9b44-f641edd70105)
+
+
+Melakukan tranformasi vektor ke dalam bentuk matriks seperti data yang ditampilkan.
 
 #### Melihat Daftar jumlah film berdasarkan genre dan melihat korelasi nya yg diperlihatkan dalam bentuk matrix
 
-|                                judul | noir | mystery | romance | adventure | listed | sci | fantasy | action | no | genres | ... | horror | thriller | crime | children | western | drama | musical | fi | film | comedy |   |
-|-------------------------------------:|-----:|--------:|--------:|----------:|-------:|----:|--------:|-------:|---:|-------:|----:|-------:|---------:|------:|---------:|--------:|------:|--------:|---:|-----:|-------:|---|
-|          After Hours (1985)          |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        1 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
-|   Kentucky Fried Movie, The (1977)   |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
-|          Summer Catch (2001)         |    0 |       0 |       1 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     1 |       0 |  0 |    0 |      1 |   |
-|           Possession (2002)          |    0 |       0 |       1 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     1 |       0 |  0 |    0 |      0 |   |
-| Down and Out in Beverly Hills (1986) |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
-|        Valhalla Rising (2009)        |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      1 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     1 |       0 |  0 |    0 |      0 |   |
-|          Mystery Date (1991)         |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
-|              Fans (1999)             |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
-|          Bob Roberts (1992)          |    0 |       0 |       0 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     0 |       0 |  0 |    0 |      1 |   |
-|        Beautiful Thing (1996)        |    0 |       0 |       1 |         0 |      0 |   0 |       0 |      0 |  0 |      0 | ... |      0 |        0 |     0 |        0 |       0 |     1 |       0 |  0 |    0 |      0 |   |
+|                                judul | listed |  romance | musical |    drama | film | thriller |   action |       fi |  mystery | crime | ... | documentary | genres | western | war |      sci |   comedy | imax | noir | fantasy | children |   |
+|-------------------------------------:|-------:|---------:|--------:|---------:|-----:|---------:|---------:|---------:|---------:|------:|----:|------------:|-------:|--------:|----:|---------:|---------:|-----:|-----:|--------:|---------:|---|
+|       Conspiracy Theory (1997)       |    0.0 | 0.490731 |     0.0 | 0.314993 |  0.0 | 0.460705 | 0.000000 | 0.000000 | 0.669114 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.000000 | 0.000000 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
+|         28 Days Later (2002)         |    0.0 | 0.000000 |     0.0 | 0.000000 |  0.0 | 0.000000 | 0.423884 | 0.522916 | 0.000000 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.522916 | 0.000000 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
+|             Speed (1994)             |    0.0 | 0.599087 |     0.0 | 0.000000 |  0.0 | 0.562432 | 0.569882 | 0.000000 | 0.000000 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.000000 | 0.000000 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
+|       Conversation, The (1974)       |    0.0 | 0.000000 |     0.0 | 0.425925 |  0.0 | 0.000000 | 0.000000 | 0.000000 | 0.904758 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.000000 | 0.000000 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
+|            Jason X (2002)            |    0.0 | 0.000000 |     0.0 | 0.000000 |  0.0 | 0.419322 | 0.000000 | 0.524140 | 0.000000 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.524140 | 0.000000 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
+|          Now and Then (1995)         |    0.0 | 0.000000 |     0.0 | 0.439701 |  0.0 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.000000 | 0.000000 |  0.0 |  0.0 |     0.0 | 0.898144 |   |
+|           Speechless (1994)          |    0.0 | 0.821173 |     0.0 | 0.000000 |  0.0 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.000000 | 0.570679 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
+| How to Make an American Quilt (1995) |    0.0 | 0.841550 |     0.0 | 0.540179 |  0.0 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.000000 | 0.000000 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
+|       Play Misty for Me (1971)       |    0.0 | 0.000000 |     0.0 | 0.564407 |  0.0 | 0.825496 | 0.000000 | 0.000000 | 0.000000 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.000000 | 0.000000 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
+|           Road Trip (2000)           |    0.0 | 0.000000 |     0.0 | 0.000000 |  0.0 | 0.000000 | 0.000000 | 0.000000 | 0.000000 |   0.0 | ... |         0.0 |    0.0 |     0.0 | 0.0 | 0.000000 | 1.000000 |  0.0 |  0.0 |     0.0 | 0.000000 |   |
 
-Data menunjukkan terdapat 10 baris dengan 22 kolom
+Data menunjukkan terdapat 10 baris dengan 22 kolom. Dari data tersebut menunjukkan bahwa korelasi 1 berarti memiliki kemipiran yang tinggi dibanding korelasi 0.
 
 ## Modeling
 
@@ -263,15 +272,39 @@ Keterangan:
 ```
 Jika kedua objek memiliki nilai similaritas 1, maka kedua objek dikatakan identik dan sebaliknya. Semakin besar hasil dari fungsi similarity, maka kedua objek yang dievaluasi dianggap semakin mirip dan sebaliknya. 
 
-Tahapan yang dilakukan pada fungsi tersebut ialah sebagai berikut.
-1. Mengambil indeks dari judul film yang telah didefinisikan sebelumnnya
-2. Mengambil skor kemiripan dengan semua film
-3. Mengurutkan film berdasarkan skor kemiripan
-4. Mengambil 19 judul berdasarkan kemiripan dari 1-20 karena urutan 0 memberikan indeks yang sama dengan judul film yang diinput
-5. Mengambil judul film dari skor kemiripan
-6. Mengembalikan 19 rekomendasi judul film dari kemiripan skor yang telah diurutkan dan menampilkan genre dari 19 rekomendasi film tersebut
+Tahapan yang dilakukan pada fungsi tersebut ialah sebagai berikut:
 
-Berikut _top_-20 _recommemdation_ berdasarkan genre dari judul film "*Lost and Delirious (2001)*"
+###  Melatih Model dengan cosine similarity
+
+![Screenshot 2025-05-26 211947](https://github.com/user-attachments/assets/822732b5-2ab8-4e56-ac23-cefbac480bab)
+
+### Menampilkan Matriks Kesamaan
+
+|                                         judul | Children\|Comedy\|Drama | Documentary | Action\|Adventure\|Children\|Comedy\|Fantasy |    Drama | Drama\|Horror\|Mystery\|Thriller | Drama\|Fantasy\|Mystery\|Sci-Fi | Drama\|Horror | Drama\|Fantasy\|Sci-Fi |   Comedy | Adventure\|Drama |
+|----------------------------------------------:|------------------------:|------------:|---------------------------------------------:|---------:|---------------------------------:|--------------------------------:|--------------:|-----------------------:|---------:|-----------------:|
+|           3 Ninjas Knuckle Up (1995)          |                0.656385 |         0.0 |                                     0.669600 | 0.000000 |                         0.000000 |                        0.000000 |      0.000000 |               0.000000 | 0.000000 |         0.000000 |
+|                Beautiful (2000)               |                0.585127 |         0.0 |                                     0.211031 | 0.678501 |                         0.204634 |                        0.169542 |      0.325605 |               0.200049 | 0.734599 |         0.346050 |
+| Looking for Comedy in the Muslim World (2005) |                0.429834 |         0.0 |                                     0.287274 | 0.000000 |                         0.000000 |                        0.000000 |      0.000000 |               0.000000 | 1.000000 |         0.000000 |
+|           Night of the Lepus (1972)           |                0.000000 |         0.0 |                                     0.000000 | 0.000000 |                         0.473967 |                        0.478879 |      0.459843 |               0.565049 | 0.000000 |         0.000000 |
+|     Broken Wings (Knafayim Shvurot) (2002)    |                0.397010 |         0.0 |                                     0.000000 | 1.000000 |                         0.301597 |                        0.249877 |      0.479889 |               0.294840 | 0.000000 |         0.510021 |
+|        Desperately Seeking Susan (1985)       |                0.402119 |         0.0 |                                     0.145028 | 0.466289 |                         0.140631 |                        0.116515 |      0.223767 |               0.137481 | 0.504842 |         0.237817 |
+|                  Logan (2017)                 |                0.000000 |         0.0 |                                     0.195544 | 0.000000 |                         0.000000 |                        0.560499 |      0.000000 |               0.661355 | 0.000000 |         0.000000 |
+|               Used People (1992)              |                0.585127 |         0.0 |                                     0.211031 | 0.678501 |                         0.204634 |                        0.169542 |      0.325605 |               0.200049 | 0.734599 |         0.346050 |
+|                Blue Ruin (2013)               |                0.000000 |         0.0 |                                     0.000000 | 0.000000 |                         0.441113 |                        0.000000 |      0.000000 |               0.000000 | 0.000000 |         0.000000 |
+
+## Evaluation
+
+### Mengindikasi dan memperlihatkan judul film berdasarkan urutan dari data
+
+![Screenshot 2025-05-26 212422](https://github.com/user-attachments/assets/6c63f2b0-c589-45e7-9964-49aae6435f86)
+
+Berdasarkan data tersebut terdapat urutan data dimulai dari Toy Story (1995), Jumanji (1995), Grumpier Old Men (1995), Waiting to Exhale (1995), Father of the Bride Part II (1995)
+
+### Membuat fungsi untuk memanggil 20 rekomendasi film berdasarkan judul yang di input
+
+![Screenshot 2025-05-26 212648](https://github.com/user-attachments/assets/1e0585ea-c1d7-4c70-8eec-07c4bfdd4859)
+
+### Menampilkan 19 rekomendasi film dari judul yang telah di input menggunakan fungsi movie_recomendations
 
 |    |                                          judul | genre |
 |---:|-----------------------------------------------:|------:|
@@ -297,44 +330,22 @@ Berikut _top_-20 _recommemdation_ berdasarkan genre dari judul film "*Lost and D
 
 Dengan hasil yang diberikan di atas berdasarkan judul film "Lost and Delirious (2001)" dengan genre Drama maka didapatkan 19 rekomendasi judul film dengan genre yang serupa ataupun mirip.
 
-## Evaluation
+### Menghitung banyaknya data genre pada hasil rekomendasi
 
-Pada proyek ini, Metric yang digunakan pada sistem rekomendasi judul film berdasarkan genre adalah accuracy precision. Precision adalah metrik yang membandingkan rasio prediksi benar atau positif dengan keseluruhan hasil yang diprediksi positif dengan rumus
+![Screenshot 2025-05-26 213057](https://github.com/user-attachments/assets/e542c294-e283-4de8-9790-53c0ea5ef2fb)
 
-$$\ Precission=TP/(TP+FP)$$
-~~~
-keterangan:
-TP = True Positif (prediksi positif dan hal tersebut benar)
-FP = False Positif (prediksi positif dan hal tersebut salah)
-~~~
+### Melakukan perhitungan dengan menggunakan metrik
 
-*Accuracy Precision* dipilih adalah karena metrik ini dapat membandingkan rasio prediksi benar atau positif dengan keseluruhan hasil yang diprediksi positif. Dalam hal ini adalah rasio item yang direkomendasikan memiliki genre yang mirip atau serupa dibandingkan dengan genre dari judul film yang diinput.
-
-Code yang digunakan untuk melihat jumlah genre yang mirip atau serupa adalah sebagai berikut.
-~~~
-# Menghitung banyaknya data genre pada hasil rekomendasi yg dilakukan 
-value = pd.DataFrame(recomendation['genre'].value_counts().reset_index().values, columns = ['genre', 'count'])
-value.head()
-~~~
-Output:
-~~~
-        genre   	                        count
-0	    Drama       	                    19
-~~~
-Dari output tersebut dihitung accuracy precision nya adalah
-```
-TP = 19 #jumlah prediksi benar untuk genre yang mirip atau serupa
-FP = 0 #jumlah prediksi salah untuk genre yang mirip atau serupa
-
-Precision = TP/(TP+FP)
-print("{0:.0%}".format(Precision))
-```
-Dipilih nya nilai True Positif 19 karna ia merupakan nilai atau jumlah yg diduga memiliki kemiripan/identik dengan genre yg dipilih yaitu 19. Hasil rekomendasi yg dihasilkan model menunjukan kemiripan dengan genre film yg dinput yaitu drama. Sedangkan untuk nilai False Positif tidak teridentifikasi pada hasil output dari genre yg diinput maka nilai nya 0 
-Output:
-```
 100%
-```
-Kesimpulan dari output yang dihasilkan bahwa prediksi rekomendasi yang diberikan 100% presisi sesuai genre yang mirip atau serupa dengan genre dari judul yang diinput.
+Precision@10: 1.0000
+Recall@10: 0.0095
+Average Precision: 0.0180
+Mean Average Precision (MAP): 0.4097
+
+Dalam studi kasus film Lost and Delirious (2001), sistem rekomendasi menunjukkan kinerja yang sangat tinggi dalam hal ketepatan, ditunjukkan oleh Precision@10 sebesar 1.0000, yang berarti seluruh 10 film yang direkomendasikan dianggap relevan. Namun, sistem memiliki kelemahan signifikan dalam hal cakupan, dengan Recall@10 hanya 0.0095, yang menunjukkan bahwa dari semua film relevan yang mungkin tersedia, hanya sebagian kecil yang berhasil direkomendasikan. 
+
+Selain itu, Average Precision sebesar 0.0180 mengindikasikan bahwa urutan kemunculan film relevan dalam daftar rekomendasi belum optimal, meskipun akurasinya tinggi. Secara keseluruhan, Mean Average Precision (MAP) sebesar 0.4097 mencerminkan bahwa sistem memiliki performa menengah dalam memberikan dan mengurutkan rekomendasi secara umum. Dengan demikian, sistem ini sangat selektif dan tepat dalam memberikan rekomendasi, tetapi masih perlu ditingkatkan dalam menjangkau lebih banyak item relevan dan menyusun urutan rekomendasi yang lebih baik.
+
 ## Referensi
 
 [[1]](https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/download/9163/4159/) Tren Positif Film Indonesia | Indonesia.go.id (2019). Available at: https://indonesia.go.id/ragam/seni/sosial/tren-positif-film-indonesia (Accessed: 28 August 2020).
