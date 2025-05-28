@@ -292,6 +292,32 @@ Tahapan yang dilakukan pada fungsi tersebut ialah sebagai berikut:
 |               Used People (1992)              |                0.585127 |         0.0 |                                     0.211031 | 0.678501 |                         0.204634 |                        0.169542 |      0.325605 |               0.200049 | 0.734599 |         0.346050 |
 |                Blue Ruin (2013)               |                0.000000 |         0.0 |                                     0.000000 | 0.000000 |                         0.441113 |                        0.000000 |      0.000000 |               0.000000 | 0.000000 |         0.000000 |
 
+### Menampilkan hasil rekomendasi modelling
+
+|    |                                                    judul |         genre |
+|---:|---------------------------------------------------------:|--------------:|
+|  0 |                                         Big Bully (1996) | Comedy\|Drama |
+|  1 |                          Antonia's Line (Antonia) (1995) | Comedy\|Drama |
+|  2 |                            In the Bleak Midwinter (1995) | Comedy\|Drama |
+|  3 |               Nobody Loves Me (Keiner liebt mich) (1994) | Comedy\|Drama |
+|  4 |                                  Blue in the Face (1995) | Comedy\|Drama |
+|  5 |                                           Jeffrey (1995) | Comedy\|Drama |
+|  6 |                              Love & Human Remains (1993) | Comedy\|Drama |
+|  7 |                                             Smoke (1995) | Comedy\|Drama |
+|  8 |                                   Unstrung Heroes (1995) | Comedy\|Drama |
+|  9 |                                  Boys on the Side (1995) | Comedy\|Drama |
+| 10 |                                           Ed Wood (1994) | Comedy\|Drama |
+| 11 |                       Madness of King George, The (1994) | Comedy\|Drama |
+| 12 |                                         Roommates (1995) | Comedy\|Drama |
+| 13 |          Three Colors: White (Trzy kolory: Bialy) (1994) | Comedy\|Drama |
+| 14 |                              Swimming with Sharks (1995) | Comedy\|Drama |
+| 15 |                                    Sum of Us, The (1994) | Comedy\|Drama |
+| 16 | Adventures of Priscilla, Queen of the Desert, The (1994) | Comedy\|Drama |
+| 17 |                                          Crooklyn (1994) | Comedy\|Drama |
+| 18 |                                        Paper, The (1994) | Comedy\|Drama |
+
+Berdasarkan modelling yang telah dibuat maka ditampilkan rekomendasi dari film berjudul Letter to Three Wives, A (1949) seperti di atas.
+
 ## Evaluation
 
 ### Mengindikasi dan memperlihatkan judul film berdasarkan urutan dari data
